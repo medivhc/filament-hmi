@@ -1,0 +1,67 @@
+syntax = "proto2";
+
+package hmi.scene.v1;
+
+message Vec3 {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+}
+
+message Quaternion {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+  optional float w = 4;
+}
+
+message Pose {
+  optional Vec3 position = 1;
+  optional Quaternion rotation = 2;
+  optional Vec3 velocity_mps = 3;
+  optional Vec3 accel_mps2 = 4;
+  optional float yaw_rate_rps = 5;
+}
+
+message VehicleState {
+  optional uint64 id = 1;
+  optional Pose pose = 2;
+  optional float length_m = 3 [default = 4.5];
+  optional float width_m = 4 [default = 1.8];
+  optional float height_m = 5 [default = 1.6];
+  optional bool is_ego = 6 [default = false];
+  optional string class_name = 7;
+}
+
+message LaneGuide {
+  repeated Vec3 centerline_points = 1;
+  optional float width_m = 2 [default = 1.2];
+  optional float start_alpha = 3 [default = 0.9];
+  optional float end_alpha = 4 [default = 0.2];
+}
+
+message HudState {
+  optional string gear = 1 [default = "D"];
+  optional float speed_kmh = 2;
+  optional bool acc_enabled = 3 [default = false];
+  optional uint32 speed_limit_kmh = 4;
+  optional bool warning_ring_red = 5 [default = false];
+}
+
+message RoadStyle {
+  optional float lane_width_m = 1 [default = 3.5];
+  optional uint32 lane_count = 2 [default = 2];
+  optional float shoulder_width_m = 3 [default = 0.5];
+}
+
+message DrivingSceneFrame {
+  optional uint64 seq = 1;
+  optional uint64 timestamp_ms = 2;
+  optional Pose ego_pose = 3;
+  repeated VehicleState vehicles = 4;
+  optional LaneGuide lane_guide = 5;
+  optional HudState hud = 6;
+  optional RoadStyle road = 7;
+
+  reserved 100 to 199;
+}

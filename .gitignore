@@ -1,0 +1,14 @@
+.gradle/
+build/
+**/build/
+local.properties
+.idea/
+*.iml
+
+# Binary model assets
+app/src/main/assets/models/*.glb
+
+# avoid binary artifacts
+gradle/wrapper/gradle-wrapper.jar
+
+third_party/filament/

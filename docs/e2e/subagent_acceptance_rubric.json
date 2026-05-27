@@ -1,0 +1,35 @@
+{
+  "name": "filament_hmi_scene_semantic_acceptance",
+  "pass_threshold": 20,
+  "max_score": 25,
+  "checks": [
+    {
+      "id": "road_perspective",
+      "description": "双车道道路透视中心合理，远近收敛方向正确",
+      "score_range": [0, 5]
+    },
+    {
+      "id": "lane_guide",
+      "description": "蓝色引导带位于自车前方左侧路径区域，形态连续",
+      "score_range": [0, 5]
+    },
+    {
+      "id": "vehicle_layout",
+      "description": "车辆数量与相对布局接近参考图（前方多车，近处左右有车）",
+      "score_range": [0, 5]
+    },
+    {
+      "id": "hud_completeness",
+      "description": "HUD包含 D、红圈、19.9、KM/H、ACC、130",
+      "score_range": [0, 5]
+    },
+    {
+      "id": "lighting_quality",
+      "description": "白模与场景光照层次明显，阴影方向与强度自然",
+      "score_range": [0, 5]
+    }
+  ],
+  "output": {
+    "required": ["total_score", "check_scores", "pass", "notes"]
+  }
+}
